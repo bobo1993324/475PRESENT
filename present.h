@@ -8,7 +8,7 @@ using namespace std;
 #define PRESENT
 class Present {
 public:
-    // key should be either 10 or 16 long
+    // key should be either 10 or 16 long in bytes
     Present(uberzahl key, int keysize);
 
     // encryption method, give message, return cipher

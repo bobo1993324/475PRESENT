@@ -1,4 +1,11 @@
-How to use PRESENT:
+475 Project interface:
+
+    The interface functions are defined in 475Project.h and 475Project.cpp
+    It provides keygen, encrypt and decrypt
+    Details are in 475Project.h
+    See main.cpp for example
+
+How to use PRESENT.cpp:
 
 Setup: 
 	Key size: 80 bits or 128 bits
