@@ -5,8 +5,16 @@
 using namespace std;
 class Present {
 public:
+    // key should be either 10 or 16 long
     Present(string key);
+
+    // encryption method, give message, return cipher
+    // message: string of length 8
+    // returns: string of length 8
     string encrypt(string message);
+    // decryption method, give cipher, return the original message
+    // cipher: string of length 8
+    // returns: string of length 8
     string decrypt(string cipher);
     uberzahl convertToNumber(string s);
 private:
