@@ -5,9 +5,9 @@
 using namespace std;
 int main() {
     Present p("1234567890123456");
-    string c = p.encrypt("12345678");
+    string c = p.encrypt("zxcvbnm,");
     cout << c << endl;
-    string m = p.decrypt("12345678");
+    string m = p.decrypt(c);
     cout << m << endl;
 //    cout << p.convertToNumber("01");
 }

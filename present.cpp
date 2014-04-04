@@ -27,28 +27,33 @@ Present::Present(string key) {
 
 string Present::encrypt(string message) {
     uberzahl c = convertToNumber(message);
+//    cout << c << endl;
     for (int i = 0; i < 31; i++) {
-	c = c ^ keys[i];
-	// first do sbox step
-	uberzahl c2;
-	for (int j = 0; j < 16; j++) {
-	    c2 = c2 + (uberzahl(sbox[(c >> (j * 4)) % 16]) << (j * 4));
-	}
-	// next do player step
-	uberzahl c3;
-	for (int j = 0; j < 64; j++) {
-	    c3 = c3 + (((c >> j) & 1) << pbox[j]);
-	}
-	c = c3;
+        c = c ^ keys[i];
+        // first do sbox step
+//        cout << c << endl;
+        uberzahl c2;
+        for (int j = 0; j < 16; j++) {
+            c2 = c2 + (uberzahl(sbox[(c >> (j * 4)) % 16]) << (j * 4));
+        }
+//        cout << c2 << endl;
+        // next do player step
+        uberzahl c3;
+        for (int j = 0; j < 64; j++) {
+            c3 = c3 + (((c2 >> j) & 1) << pbox[j]);
+        }
+//        cout << c3 << endl;
+        c = c3;
     }
     c = c ^ keys[31];
+//    cout << c << endl;
     return convertToString(c);
 }
 
 string Present::decrypt(string cipher) {
     uberzahl u = convertToNumber(cipher);
-    cout <<  cipher.size() << endl;
-    cout << u << endl;
+//    cout <<  cipher.size() << endl;
+//    cout << u << endl;
     for (int i = 0; i < 31; i++) {
         u = u ^ keys[31 - i];
         uberzahl u2;
@@ -68,7 +73,7 @@ string Present::decrypt(string cipher) {
 uberzahl Present::convertToNumber(string s) {
     uberzahl result;
     for (int i = 0; i < s.length(); i++) {
-        result = (result << 8) + s[i];
+        result = (result << 8) + (unsigned char)s[i];
     }
     return result;
 }
