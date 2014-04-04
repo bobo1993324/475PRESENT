@@ -1,0 +1,38 @@
+How to use PRESENT:
+
+Setup: 
+	Key size: 80 bits or 128 bits
+	Key requirements: No. Any 80 bits or 128 bits can be the key.
+	
+	Initialize key as a string, 10 or 16 in length. Pass to the initializer of Present class.
+	
+	For example.	
+
+	include <present.h>
+	...
+	string key = "1234567890"; //length must be either 10 or 16
+	Present p(key);
+
+Encryption:
+	Input Block size: 64 bits
+	Output Block size: 64 bits
+
+	Initialize message as a string, 8 in length. Pass to the encryption of Present instance. The output is the corresponding cypher, a string of length 8.
+
+	For example.
+	
+	string message = "12345678";
+	string c = p.encrypt(message);
+
+Decryption:
+	Input Block size: 64 bits
+        Output Block size: 64 bits
+
+	Pass a cipher as a string of length 8 to the decryption of Present instance. The output is the original message, a string of length 8.
+
+        For example. (Assume c is the cipher we get from encryption)
+
+        string m = p.encrypt(c);
+
+SEE main.cpp for the whole example.
+SEE Makefile for how to build.
