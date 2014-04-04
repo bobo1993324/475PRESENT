@@ -3,9 +3,11 @@
 
 using namespace std;
 int main() {
-    Present p("1234567890123456");
-    string c = p.encrypt("zxcvbnm,");
+    uberzahl u("1234567890123456");
+    Present p(u, 16);
+    uberzahl u2("1234567812345678");
+    uberzahl c = p.encrypt(u2);
     cout << c << endl;
-    string m = p.decrypt(c);
+    uberzahl m = p.decrypt(c);
     cout << m << endl;
 }

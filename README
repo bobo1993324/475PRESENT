@@ -36,3 +36,6 @@ Decryption:
 
 SEE main.cpp for the whole example.
 SEE Makefile for how to build.
+
+Note: Running on CAEN
+Before make, Run "module load gcc";

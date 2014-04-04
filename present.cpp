@@ -1,17 +1,15 @@
 #include "present.h"
 
-Present::Present(string key) {
+Present::Present(uberzahl u, int keysize) {
     //TODO set custom rounds
-    if (key.size() == 10) {
-        uberzahl u = convertToNumber(key);
+    if (keysize == 10) {
         for (int i = 0; i < 32; i++) {
             keys[i] = u >> 16;
             u = ((u & (uberzahl(1) << 19) - 1) << 61) + (u >> 19);
             u = (uberzahl(sbox[(u >> 76) % 16]) << 76) +  (u & ((uberzahl(1) << 76)- 1));
             u = u ^ (uberzahl(i + 1) << 15);
         }
-    } else if (key.size() == 16) {
-        uberzahl u = convertToNumber(key);
+    } else if (keysize == 16) {
         for (int i = 0; i < 32; i++) {
             keys[i] = u >> 64;
             u = ((u & (uberzahl(1) << 67) - 1) << 61) + (u >> 67);
@@ -25,8 +23,7 @@ Present::Present(string key) {
     }
 }
 
-string Present::encrypt(string message) {
-    uberzahl c = convertToNumber(message);
+uberzahl Present::encrypt(uberzahl c) {
 //    cout << c << endl;
     for (int i = 0; i < 31; i++) {
         c = c ^ keys[i];
@@ -47,11 +44,10 @@ string Present::encrypt(string message) {
     }
     c = c ^ keys[31];
 //    cout << c << endl;
-    return convertToString(c);
+    return c;
 }
 
-string Present::decrypt(string cipher) {
-    uberzahl u = convertToNumber(cipher);
+uberzahl Present::decrypt(uberzahl u) {
 //    cout <<  cipher.size() << endl;
 //    cout << u << endl;
     for (int i = 0; i < 31; i++) {
@@ -67,23 +63,5 @@ string Present::decrypt(string cipher) {
         u = u3;
     }
     u = u ^ keys[0];
-    return convertToString(u);
-}
-
-uberzahl Present::convertToNumber(string s) {
-    uberzahl result;
-    for (int i = 0; i < s.length(); i++) {
-        result = (result << 8) + (unsigned char)s[i];
-    }
-    return result;
-}
-
-string Present::convertToString(uberzahl u) {
-    string result = "";
-    while (u != uberzahl()) {
-        result = result + (char)(u % 256);
-        u = u >> 8;
-    }
-    reverse(result.begin(), result.end());
-    return result;
+    return u;
 }
