@@ -2,14 +2,14 @@
 
 Present::Present(uberzahl u, int keysize) {
     //TODO set custom rounds
-    if (keysize == 10) {
+    if (keysize <= 10) {
         for (int i = 0; i < 32; i++) {
             keys[i] = u >> 16;
             u = ((u & (uberzahl(1) << 19) - 1) << 61) + (u >> 19);
             u = (uberzahl(sbox[(u >> 76) % 16]) << 76) +  (u & ((uberzahl(1) << 76)- 1));
             u = u ^ (uberzahl(i + 1) << 15);
         }
-    } else if (keysize == 16) {
+    } else if (keysize <= 16) {
         for (int i = 0; i < 32; i++) {
             keys[i] = u >> 64;
             u = ((u & (uberzahl(1) << 67) - 1) << 61) + (u >> 67);

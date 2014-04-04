@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "present.h"
+#include "475Project.h"
 
 using namespace std;
 
@@ -24,4 +26,17 @@ int main() {
     Present p4(key2, 10);
     c = p4.encrypt(plaintext2);
     cout << "PlainText: FFFFFFFFFFFFFFFFFFFF; Key: FFFFFFFFFFFFFFFFFFFF; CipherText: " << c << endl;
+
+    vector <uberzahl> keys, plaintexts, cyphers;
+    keys.push_back(key);
+    keys.push_back(key2);
+    keys.push_back(key);
+    keys.push_back(key2);
+    plaintexts.push_back(plaintext);
+    plaintexts.push_back(plaintext);
+    plaintexts.push_back(plaintext2);
+    plaintexts.push_back(plaintext2);
+    cyphers = encrypt(keys, plaintexts);
+    cout << "cyphers: " << " " << cyphers[0] << " " << cyphers[1] << " " << cyphers[2] << " " << cyphers[3] << endl;
+
 }
