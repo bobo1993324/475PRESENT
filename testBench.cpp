@@ -2,11 +2,12 @@
 #include "present.h"
 
 using namespace std;
+
 int main() {
     uberzahl key;
-    uberzahl key2("1208925819614629174706175");
+    uberzahl key2("1208925819614629174706175"); // 0xFFFFFFFFFFFFFFFFFFFF
     uberzahl plaintext;
-    uberzahl plaintext2("1208925819614629174706175");
+    uberzahl plaintext2("1208925819614629174706175"); // 0xFFFFFFFFFFFFFFFFFFFF
 
     Present p(key, 10);
     uberzahl c = p.encrypt(plaintext);

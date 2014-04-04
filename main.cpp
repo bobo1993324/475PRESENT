@@ -3,9 +3,9 @@
 
 using namespace std;
 int main() {
-    uberzahl u("1234567890123456");
+    uberzahl u("4759477275222530853120");
     Present p(u, 16);
-    uberzahl u2("1234567812345678");
+    uberzahl u2("283686952306183");
     uberzahl c = p.encrypt(u2);
     cout << c << endl;
     uberzahl m = p.decrypt(c);
